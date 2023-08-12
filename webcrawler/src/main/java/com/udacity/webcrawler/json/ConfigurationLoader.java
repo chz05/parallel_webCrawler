@@ -54,19 +54,14 @@ public final class ConfigurationLoader {
     Objects.requireNonNull(reader);
     // TODO: Fill in this method
     ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.disable(JsonParser.Feature.AUTO_CLOSE_SOURCE);
     CrawlerConfiguration crawlerConfiguration = null;
     try {
       crawlerConfiguration = objectMapper.readValue(reader, CrawlerConfiguration.class);
     }catch (IOException e){
       e.printStackTrace();
-    }finally {
-      try {
-        //objectMapper.disable(JsonParser.Feature.AUTO_CLOSE_SOURCE);
-        reader.close();
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
     }
+
     //return new CrawlerConfiguration.Builder().build();
     return crawlerConfiguration;
   }

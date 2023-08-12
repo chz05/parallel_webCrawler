@@ -1,5 +1,9 @@
 package com.udacity.webcrawler.json;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +40,7 @@ public final class CrawlResult {
    * words have the same frequency and length, use alphabetical order to break ties (the word that
    * comes first in the alphabet ranks higher).
    */
+  @JsonGetter
   public Map<String, Integer> getWordCounts() {
     return wordCounts;
   }
@@ -48,6 +53,7 @@ public final class CrawlResult {
    *
    * <p>When computing this value for a given crawl, the same URL is never counted twice.
    */
+  @JsonGetter
   public int getUrlsVisited() {
     return urlsVisited;
   }
